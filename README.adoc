@@ -1,0 +1,115 @@
+= BigBlueButtonStatistics for Zabbix
+
+_bbbstats_ provides some basic usage statistics of a link:https://bigbluebutton.org[BigBlueButton] installation.
+
+== Installation
+The script can but has not to be run on the same host as the bbb installation.
+
+=== Prerequisites
+==== Software dependencies
+_bbbstats_ requires python >= 3.2 and the python module requests.
+
+===== Ubuntu, Debian
+[source, shell script]
+----
+apt install python3-requests
+----
+
+===== Fedora
+[source, shell script]
+----
+dnf install python3-requests
+----
+
+===== Arch
+[source, shell script]
+----
+pacman -S python-requests
+----
+
+==== API secret
+To obtain an api secret log into to your bbb server and run the following command on the cli:
+[source,shell script]
+----
+bbb-conf --secret
+----
+Beside the secret it will also tell you the URL of your API.
+For more details please see the link:https://docs.bigbluebutton.org/dev/api.html#api-security-model[BigBlueButton API documentation].
+
+=== Installing bbbstats
+Copy `bbbstats.py` to the desired location.
+`/usr/bin/bbbstats.py` might be a good choice.
+[source,shell script]
+----
+sudo cp bbbstats.py /usr/bin/bbbstats.py
+----
+
+Set the permissions for `bbbstats.py` that it can be executed by zabbix.
+[source, shell script]
+----
+sudo chown zabbix /usr/bin/bbbstats.py
+sudo chmod u+x /usr/bin/bbbstats.py
+----
+
+Make a copy of `config.example.json` and move it to `/etc/bbbstats/config.json` or `<zabbix_user_home>/.config/bbbstats/config.json`.
+You first have to create the directory.
+[source,shell script]
+----
+sudo mkdir /etc/bbbstats
+sudo cp config.example.json /etc/bbbstats/config.json
+----
+
+Paste the secret you obtained in an earlier step into the config file and set the URL of the API.
+
+ApiUrl:: The base URL of your BigBlueButton installation.
+ApiSecret:: The secret you obtained in an earlier step.
+
+Ensure that the config file is only readable by the zabbix user as it holds your API secret.
+[source, shell script]
+----
+sudo chown -R zabbix /etc/bbbstats
+sudo chmod 400 /etc/bbbstats/config.json
+sudo chmod 500 /etc/bbbstats/
+----
+
+Copy `bbbstats.conf` to `/etc/zabbix/zabbix_agentd.d/bbbstats.conf` and assign the proper permissions.
+The file needs to be readable by the zabbix processes.
+[source,shell script]
+----
+sudo cp bbbstats.conf /etc/zabbix/zabbix_agentd.d/bbbstats.conf
+sudo chown zabbix /etc/zabbix_agentd.d/bbbstats.confd
+sudo chmod u+r /etc/zabbix_agentd.d/bbbstats.conf
+----
+
+=== Try it
+To verify everything works as expected run the following command from your cli:
+[source,shell script]
+----
+sudo -u zabbix /usr/bin/bbbstats.py
+----
+
+It should return something like this:
+[source,text]
+----
+There are 0 users (0 unique) online in 0 meetings in 0 regular rooms and 0 breakout rooms.
+----
+
+Alternatively you can try the json output, which is used by the items in the zabbix template:
+[source,shell script]
+----
+sudo -u zabbix /usr/bin/bbbstats.py --json
+----
+
+And this one should return:
+[source,text]
+----
+{"unique_users": 0, "breakout_rooms": 0, "regular_rooms": 0, "total_rooms": 0, "total_users": 0}
+----
+NOTE: The order of the fields might be different on each call of the script.
+
+== Zabbix integration
+
+Head to your Zabbix frontend and go to `Configuration` -> `Templates` and import the zbx_bbbstats_template.xml with the default settings.
+
+Than select the host on which you just installed the scripts and apply the template `Template App BigBlueButton Statistics` to it.
+After a couple of minutes the first values should be visible in `Latest data`.

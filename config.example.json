@@ -1,0 +1,4 @@
+{
+    "ApiUrl": "https://bbb.example.com/bigbluebutton",
+    "ApiSecret": "your_api_secret"
+}
