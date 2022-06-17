@@ -1,207 +1,423 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>5.0</version>
-    <date>2020-10-09T14:18:24Z</date>
+    <version>4.0</version>
+    <date>2022-06-17T13:39:54Z</date>
     <groups>
         <group>
-            <name>Templates/Applications</name>
+            <name>Linux servers</name>
         </group>
     </groups>
     <templates>
         <template>
-            <template>Template App BigBlueButton Statistics</template>
-            <name>Template App BigBlueButton Statistics</name>
-            <description>Basic statistics for a BBB Server</description>
+            <template>BigBlueButton</template>
+            <name>BigBlueButton</name>
+            <description/>
             <groups>
                 <group>
-                    <name>Templates/Applications</name>
+                    <name>Linux servers</name>
                 </group>
             </groups>
             <applications>
                 <application>
-                    <name>BBB Stats</name>
+                    <name>Videoconference</name>
                 </application>
             </applications>
             <items>
                 <item>
-                    <name>BBB Stats Master Item</name>
+                    <name>bbb_status</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <snmp_oid/>
                     <key>bbb.stats</key>
-                    <history>10d</history>
+                    <delay>60s</delay>
+                    <history>1d</history>
                     <trends>0</trends>
-                    <value_type>TEXT</value_type>
-                    <description>Master Item for BBB usage statistics.</description>
+                    <status>0</status>
+                    <value_type>4</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
                 </item>
                 <item>
-                    <name>Number of rooms - breakout</name>
-                    <type>DEPENDENT</type>
-                    <key>bbb.stats.rooms.breakout</key>
+                    <name>Breakout Rooms</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>breakout_rooms</key>
                     <delay>0</delay>
-                    <description>Number of active breakout rooms.</description>
+                    <history>1w</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                     <preprocessing>
                         <step>
-                            <type>JSONPATH</type>
+                            <type>12</type>
                             <params>$.breakout_rooms</params>
                         </step>
                     </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item>
                         <key>bbb.stats</key>
                     </master_item>
                 </item>
                 <item>
-                    <name>Number of rooms - regular</name>
-                    <type>DEPENDENT</type>
-                    <key>bbb.stats.rooms.regular</key>
+                    <name>Regular Rooms</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>regular_rooms</key>
                     <delay>0</delay>
-                    <description>Number of active regular rooms.</description>
+                    <history>1w</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                     <preprocessing>
                         <step>
-                            <type>JSONPATH</type>
+                            <type>12</type>
                             <params>$.regular_rooms</params>
                         </step>
                     </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item>
                         <key>bbb.stats</key>
                     </master_item>
                 </item>
                 <item>
-                    <name>Number of rooms - total</name>
-                    <type>DEPENDENT</type>
-                    <key>bbb.stats.rooms.total</key>
+                    <name>Total Rooms</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>total_rooms</key>
                     <delay>0</delay>
-                    <description>Number of active rooms.</description>
+                    <history>1w</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                     <preprocessing>
                         <step>
-                            <type>JSONPATH</type>
+                            <type>12</type>
                             <params>$.total_rooms</params>
                         </step>
                     </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item>
                         <key>bbb.stats</key>
                     </master_item>
                 </item>
                 <item>
-                    <name>Users online - total</name>
-                    <type>DEPENDENT</type>
-                    <key>bbb.stats.users.total</key>
+                    <name>Total Users</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>total_users</key>
                     <delay>0</delay>
-                    <description>Number of users online. User might be counted twice if they are in a regular and a breakout room.</description>
+                    <history>1w</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                     <preprocessing>
                         <step>
-                            <type>JSONPATH</type>
+                            <type>12</type>
                             <params>$.total_users</params>
                         </step>
                     </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item>
                         <key>bbb.stats</key>
                     </master_item>
                 </item>
                 <item>
-                    <name>Users online - unique</name>
-                    <type>DEPENDENT</type>
-                    <key>bbb.stats.users.unique</key>
+                    <name>Unique Users</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>unique_users</key>
                     <delay>0</delay>
-                    <description>Unique number of unique users online. User who are in a regular room and a breakout room are not counted twice.</description>
+                    <history>1w</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>0</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>BBB Stats</name>
+                            <name>Videoconference</name>
                         </application>
                     </applications>
+                    <valuemap/>
+                    <logtimefmt/>
                     <preprocessing>
                         <step>
-                            <type>JSONPATH</type>
+                            <type>12</type>
                             <params>$.unique_users</params>
                         </step>
                     </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
                     <master_item>
                         <key>bbb.stats</key>
                     </master_item>
                 </item>
             </items>
+            <discovery_rules/>
+            <httptests/>
+            <macros/>
+            <templates/>
+            <screens/>
         </template>
     </templates>
-    <graphs>
-        <graph>
-            <name>Rooms</name>
-            <show_work_period>NO</show_work_period>
-            <show_triggers>NO</show_triggers>
-            <type>STACKED</type>
-            <graph_items>
-                <graph_item>
-                    <sortorder>1</sortorder>
-                    <color>2774A4</color>
-                    <item>
-                        <host>Template App BigBlueButton Statistics</host>
-                        <key>bbb.stats.rooms.total</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>2</sortorder>
-                    <color>199C0D</color>
-                    <item>
-                        <host>Template App BigBlueButton Statistics</host>
-                        <key>bbb.stats.rooms.breakout</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>3</sortorder>
-                    <color>F63100</color>
-                    <item>
-                        <host>Template App BigBlueButton Statistics</host>
-                        <key>bbb.stats.rooms.regular</key>
-                    </item>
-                </graph_item>
-            </graph_items>
-        </graph>
-        <graph>
-            <name>Users online</name>
-            <show_work_period>NO</show_work_period>
-            <show_triggers>NO</show_triggers>
-            <ymin_type_1>FIXED</ymin_type_1>
-            <graph_items>
-                <graph_item>
-                    <sortorder>1</sortorder>
-                    <color>D84315</color>
-                    <calc_fnc>ALL</calc_fnc>
-                    <item>
-                        <host>Template App BigBlueButton Statistics</host>
-                        <key>bbb.stats.users.total</key>
-                    </item>
-                </graph_item>
-                <graph_item>
-                    <sortorder>2</sortorder>
-                    <color>FF8A65</color>
-                    <calc_fnc>ALL</calc_fnc>
-                    <item>
-                        <host>Template App BigBlueButton Statistics</host>
-                        <key>bbb.stats.users.unique</key>
-                    </item>
-                </graph_item>
-            </graph_items>
-        </graph>
-    </graphs>
 </zabbix_export>
